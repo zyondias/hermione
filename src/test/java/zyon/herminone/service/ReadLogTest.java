@@ -8,7 +8,7 @@ public class ReadLogTest {
 	@Test
 	public void deveLerTodasLinhasDeLog(){
 		// give
-		String path = "classpath:log-teste.txt";
+		String path = "src/test/resources/log-teste.txt";
 		// when
 		ReadLog readLog = new ReadLog();
 		int result = readLog.execute(path).size();
