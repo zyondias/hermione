@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import zyon.herminone.vo.LogLine;
 
@@ -38,6 +40,13 @@ public class ReadLog {
 	
 	private LogLine parseLineToObject(String line){
 		LogLine logLine = new LogLine();
+		
+		Pattern patternResSstatus = Pattern.compile(".*response_status=\"(.*)\"");
+		Matcher matcherResStatus = patternResSstatus.matcher(line);
+		if(matcherResStatus.find()){
+			logLine.setResponseCode(matcherResStatus.group(1));
+		}
+		
 		return logLine;
 	}
 }
