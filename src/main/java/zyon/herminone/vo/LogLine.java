@@ -2,14 +2,14 @@ package zyon.herminone.vo;
 
 public class LogLine {
 
-	private String httpStatus;
+	private String responseCode;
 	private String urlRequest;
 	
-	public String getHttpStatus() {
-		return httpStatus;
+	public String getResponseCode() {
+		return responseCode;
 	}
-	public void setHttpStatus(String httpStatus) {
-		this.httpStatus = httpStatus;
+	public void setResponseCode(String responseCode) {
+		this.responseCode = responseCode;
 	}
 	public String getUrlRequest() {
 		return urlRequest;
