@@ -47,6 +47,12 @@ public class ReadLog {
 			logLine.setResponseCode(matcherResStatus.group(1));
 		}
 		
+		Pattern patternReqUrl = Pattern.compile(".*request_to=\"(.*)\" ");
+		Matcher matcherReqUrl = patternReqUrl.matcher(line);
+		if(matcherReqUrl.find()){
+			logLine.setUrlRequest(matcherReqUrl.group(1));
+		}
+		
 		return logLine;
 	}
 }

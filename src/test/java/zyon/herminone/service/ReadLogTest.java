@@ -42,4 +42,17 @@ public class ReadLogTest {
 		Assert.assertEquals("200", result.get(0).getResponseCode());
 		Assert.assertEquals("500", result.get(1).getResponseCode());
 	}
+	
+	@Test
+	public void devePegarOsValoresDoRequestToCorretamente() {
+		// give
+		String path = "src/test/resources/log-teste.txt";
+
+		// when
+		List<LogLine> result = readLog.execute(path);
+		
+		// then 
+		Assert.assertEquals("https://zyondev.com.br", result.get(0).getUrlRequest());
+		Assert.assertEquals("https://zaza.com.br", result.get(1).getUrlRequest());
+	}
 }
