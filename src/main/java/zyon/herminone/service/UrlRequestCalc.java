@@ -16,6 +16,8 @@ import zyon.herminone.vo.LogLine;
  */
 public class UrlRequestCalc {
 
+	private static final int LIMIT = 3;
+
 	/**
 	 * 
 	 * @param logs
@@ -34,7 +36,7 @@ public class UrlRequestCalc {
 					// ordenando pelo valor do mapa de modo que o maior valor se mantenha 
 			       .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 			       // limitando para que o mapa so tenha 3 itens
-			       .limit(3)
+			       .limit(LIMIT)
 			       // fechando o stream criando um mapa
 			       .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
