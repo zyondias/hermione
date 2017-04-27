@@ -12,12 +12,8 @@ public class MapCounter {
 
 	public static Map<String, Integer> count(Map<String, Integer> map, String key) {
 		
-		if (map.containsKey(key)) {
-			map.put(key, map.get(key) + 1);
-			return map;
-		}
+		map.put(key, map.getOrDefault(key, 0 ) +1);
 		
-		map.put(key, 1);
 		return map;
 	}
 }
