@@ -35,10 +35,10 @@ public class ManagerReportLogs {
 		// parse do arquivo
 		List<LogLine> logs = readLog.execute(PATH_FILE_LOG);
 		
-		// mapa com os status code
+		// mapa com os status code x qtd
 		Map<String, Integer> mapResponseCode = responseCodeCalc.total(logs);
 		
-		// mapa com as urls
+		// mapa com as urls x qtd
 		Map<String, Integer> mapTopThreeUrl = urlRequestCalc.topThreeUrl(logs);
 
 		// exibe urls
