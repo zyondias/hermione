@@ -6,6 +6,7 @@ import java.util.Map;
 import zyon.herminone.service.ReadLog;
 import zyon.herminone.service.ResponseCodeCalc;
 import zyon.herminone.service.UrlRequestCalc;
+import zyon.herminone.view.ShowMap;
 import zyon.herminone.vo.LogLine;
 
 /**
@@ -41,8 +42,10 @@ public class ManagerReportLogs {
 		Map<String, Integer> mapTopThreeUrl = urlRequestCalc.topThreeUrl(logs);
 
 		// exibe urls
+		ShowMap.print("TOP 3 URLs", mapTopThreeUrl);
 		
 		// exibe status
+		ShowMap.print("Status Code x Qtd", mapResponseCode);
 
 	}
 }
