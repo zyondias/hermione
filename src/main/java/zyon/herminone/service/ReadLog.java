@@ -29,21 +29,19 @@ public class ReadLog {
 	 */
 	public List<LogLine> execute(String path) {
 		List<LogLine> logLines = new ArrayList<>();
-		try {
-			BufferedReader bfFile = new BufferedReader(new FileReader(path));
-			
+		
+		try(BufferedReader bfFile = new BufferedReader(new FileReader(path))){
 			// interando as linhas do arquivo de log
 			bfFile.lines().forEach(line -> 
 				// fazendo o parse da linha do log para objeto e jogando em um array
 				logLines.add(parseLineToObject(line))
 			);
-			
-			bfFile.close();
 		} catch (FileNotFoundException e) {
 			System.err.println("OPS alguma coisa deu errado na leitura do arquivo: "+ path);
 		} catch (IOException e) {
 			System.err.println("Ops algum problema na hora de fechar o arquivo, mas ele foi processado");
 		}
+		
 		return logLines;
 	}
 	
