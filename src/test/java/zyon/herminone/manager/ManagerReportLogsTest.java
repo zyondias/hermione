@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import zyon.herminone.service.ReadLog;
 import zyon.herminone.service.ResponseCodeCalc;
 import zyon.herminone.service.UrlRequestCalc;
+import zyon.herminone.vo.LogLine;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ManagerReportLogsTest {
@@ -33,8 +34,11 @@ public class ManagerReportLogsTest {
 
 		// then
 		Mockito.verify(readLogMock, Mockito.times(1)).execute(Mockito.anyString());
-		Mockito.verify(responseCodeCalcMock, Mockito.times(1)).total(Mockito.anyList());
-		Mockito.verify(urlRequestCalcMock, Mockito.times(1)).topThreeUrl(Mockito.anyList());
+		Mockito.verify(responseCodeCalcMock, Mockito.times(1)).total(Mockito.anyListOf(LogLine.class));
+		Mockito.verify(urlRequestCalcMock, Mockito.times(1)).topThreeUrl(Mockito.anyListOf(LogLine.class));
+		
+		// valida que somente as execuçoes acima podem ser chamadas
+		Mockito.verifyNoMoreInteractions(readLogMock, responseCodeCalcMock, urlRequestCalcMock);
 
 	}
 
@@ -47,8 +51,10 @@ public class ManagerReportLogsTest {
 		InOrder inOrder = Mockito.inOrder(readLogMock, responseCodeCalcMock, urlRequestCalcMock);
 		
 		inOrder.verify(readLogMock).execute(Mockito.anyString());
-		inOrder.verify(responseCodeCalcMock).total(Mockito.anyList());
-		inOrder.verify(urlRequestCalcMock).topThreeUrl(Mockito.anyList());
+		inOrder.verify(responseCodeCalcMock).total(Mockito.anyListOf(LogLine.class));
+		inOrder.verify(urlRequestCalcMock).topThreeUrl(Mockito.anyListOf(LogLine.class));
+		
+		inOrder.verifyNoMoreInteractions();
 	}
 
 }
